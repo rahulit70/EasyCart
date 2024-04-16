@@ -34,7 +34,7 @@ class ProductDetailsViewModel @Inject constructor(
      * @param productId is a [Int] parameter that received from the Product List Screen
      */
     fun getProductDetailsByID(productId: Int?) = viewModelScope.launch {
-        if (productId != null) getProductDetailsById.invoke(productId!!).collect { response ->
+        if (productId != null) getProductDetailsById.invoke(productId).collect { response ->
             when (response) {
                 is Resource.Loading -> {
                     _productDataState.value = productDetailsDataState.value

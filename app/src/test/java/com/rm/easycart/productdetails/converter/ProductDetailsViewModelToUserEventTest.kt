@@ -1,7 +1,6 @@
 package com.rm.easycart.productdetails.converter
 
-import com.rm.easycart.cart.converter.CartListViewModelToUserEvent
-import com.rm.easycart.cart.viewmodel.CartListViewModel
+
 import com.rm.easycart.core.model.Product
 import com.rm.easycart.productdetails.viewmodel.ProductDetailsViewModel
 import io.mockk.coEvery

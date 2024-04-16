@@ -24,7 +24,7 @@ class ProductDetailsRepositoryTest {
     fun testGetProductByID_Success() = runTest {
         // Mocking product
         val product = Product(id = 1, title = "Product 1", price = 10)
-        val id: Int = 1
+        val id = 1
 
         // Mocking the ApiService
         val apiService = mockk<ApiService>(relaxed = true)

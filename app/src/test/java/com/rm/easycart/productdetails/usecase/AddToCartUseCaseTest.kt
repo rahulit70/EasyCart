@@ -1,9 +1,7 @@
 package com.rm.easycart.productdetails.usecase
 
 import com.rm.easycart.core.model.Product
-import com.rm.easycart.productdetails.repository.CartRepository
 import com.rm.easycart.productdetails.repository.CartRepositoryImpl
-import com.rm.easycart.productdetails.repository.ProductDetailsRepositoryImpl
 import com.rm.easycart.utils.AppConstants.Companion.API_SUCCESS
 import com.rm.easycart.utils.Resource
 import io.mockk.coEvery

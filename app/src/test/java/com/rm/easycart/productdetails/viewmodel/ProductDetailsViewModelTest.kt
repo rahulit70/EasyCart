@@ -1,6 +1,5 @@
 package com.rm.easycart.productdetails.viewmodel
 
-import com.rm.easycart.MainCoroutineRule
 import com.rm.easycart.MainDispatcherRule
 import com.rm.easycart.core.model.Product
 import com.rm.easycart.productdetails.state.AddToCartDataState
@@ -13,13 +12,10 @@ import com.rm.easycart.utils.Resource
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -33,9 +29,6 @@ import org.junit.Rule
 import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 class ProductDetailsViewModelTest {
-
-/*    @OptIn(DelicateCoroutinesApi::class)
-    private val mainThreadSurrogate = newSingleThreadContext("UI thread")*/
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()

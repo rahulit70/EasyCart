@@ -31,7 +31,7 @@ class GetProductListUseCaseTest {
 
 
         // Call the use case method
-        val resultFlow: Flow<PagingData<Product>> = getProductListUseCase.invoke()
+        //val resultFlow: Flow<PagingData<Product>> = getProductListUseCase.invoke()
 
 
         // Verify that ProductListRepo's invoke() was called

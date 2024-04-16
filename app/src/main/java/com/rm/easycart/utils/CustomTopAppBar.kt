@@ -14,9 +14,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.Gray
-import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -41,7 +39,7 @@ fun CustomTopAppBar(
                 Text(
                     text = title,
                     maxLines = 1,
-                    color = Color.White
+                    color = White
                 )
             },
             navigationIcon = {
@@ -49,7 +47,7 @@ fun CustomTopAppBar(
                     Icon(
                         imageVector = navigationIcon,
                         contentDescription = stringResource(id = R.string.nav_button),
-                        tint = Color.White
+                        tint = White
                     )
                 }
             },

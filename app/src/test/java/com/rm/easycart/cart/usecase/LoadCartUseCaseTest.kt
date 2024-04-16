@@ -1,7 +1,6 @@
 package com.rm.easycart.cart.usecase
 
 import com.rm.easycart.cart.repository.CartRepositoryImpl
-import com.rm.easycart.core.db.ProductDAO
 import com.rm.easycart.core.model.Product
 import com.rm.easycart.utils.Resource
 import io.mockk.coEvery

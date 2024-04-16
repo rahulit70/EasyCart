@@ -3,7 +3,6 @@ package com.rm.easycart.cart.ui.presentation
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
-import com.rm.easycart.cart.ui.presentation.CartListContent
 import com.rm.easycart.cart.state.CartListUserState
 import com.rm.easycart.cart.state.LoadCartDataState
 import com.rm.easycart.core.model.Product

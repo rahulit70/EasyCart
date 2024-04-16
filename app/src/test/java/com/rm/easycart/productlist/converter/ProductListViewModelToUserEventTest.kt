@@ -3,7 +3,6 @@ package com.rm.easycart.productlist.converter
 import com.rm.easycart.productlist.viewmodel.ProductListViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Test

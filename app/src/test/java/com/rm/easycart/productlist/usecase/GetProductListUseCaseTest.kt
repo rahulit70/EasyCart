@@ -26,7 +26,7 @@ class GetProductListUseCaseTest {
             Product(id = 2, title = "p2"),
         )
         // Mock your dependencies
-        val productsResponse: ProductsResponse = ProductsResponse(products = dummyProductList)
+        val productsResponse = ProductsResponse(products = dummyProductList)
         val expectedResponse: Response<ProductsResponse> = Response.success(productsResponse)
 
         // Mock the behavior of productListRepo to return success response

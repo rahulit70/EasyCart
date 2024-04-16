@@ -4,7 +4,6 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.rm.easycart.core.model.Product
 import com.rm.easycart.core.model.ProductsResponse
-import com.rm.easycart.core.network.ApiService
 import com.rm.easycart.productlist.usecase.GetProductListUseCase
 import com.rm.easycart.productlist.usecase.ProductPagingSource
 import io.mockk.coEvery
@@ -37,7 +36,7 @@ class ProductPagingSourceTest {
             Product(id = 2, title = "Product 2")
         )
         val fakeResponse = Response.success(ProductsResponse(products = fakeProducts, skip = 0))
-        coEvery { getProductListUseCase.invoke( 0) } returns fakeResponse
+        coEvery { getProductListUseCase.invoke(0) } returns fakeResponse
 
         val loadParams = PagingSource.LoadParams.Refresh<Int>(
             key = null,
@@ -56,7 +55,7 @@ class ProductPagingSourceTest {
 
     @Test
     fun `load returns LoadResult Error when exception occurs`() = runBlocking {
-        coEvery { getProductListUseCase.invoke( 0) } throws RuntimeException("Network Error")
+        coEvery { getProductListUseCase.invoke(0) } throws RuntimeException("Network Error")
 
         val loadParams = PagingSource.LoadParams.Refresh<Int>(
             key = null,

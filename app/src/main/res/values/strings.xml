@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">EasyCart</string>
+    <string name="close_button">Close</string>
+    <string name="nav_button">navigation button\n</string>
+    <string name="action_button">action button</string>
+    <string name="error_loading_products">Error encountered!. Please check your network connection.</string>
+    <string name="retry">Retry</string>
+    <string name="add_to_cart_success">Product added to the cart successfully.</string>
+    <string name="database_error">DB Error\n</string>
+    <string name="slider_image">product slider image</string>
+    <string name="img_empty_cart">Empty Cart Image</string>
+    <string name="no_product_in_cart">No product available in cart. Please add some products</string>
+    <string name="cart">Cart\n</string>
 </resources>

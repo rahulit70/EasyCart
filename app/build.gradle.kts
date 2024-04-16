@@ -7,9 +7,13 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+
+
 android {
     namespace = "com.rm.easycart"
     compileSdk = 34
+
+
 
     defaultConfig {
         applicationId = "com.rm.easycart"
@@ -49,8 +53,19 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/LICENSE-notice.md"
+            excludes += "/META-INF/LICENSE.md"
+        }
+        jniLibs {
+            useLegacyPackaging = true
         }
     }
+
+
+
+
+
+
 }
 
 dependencies {
@@ -100,4 +115,9 @@ dependencies {
 
     //ViewModel Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    //testing
+    testImplementation(libs.bundles.mockk)
+    androidTestImplementation(libs.bundles.mockk)
+    testImplementation (libs.kotlinx.coroutines.test)
 }

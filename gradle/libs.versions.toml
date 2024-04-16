@@ -18,6 +18,7 @@ pagingCompose = "3.3.0-alpha05"
 pagingVersion = "3.2.1"
 mockk-version="1.13.10"
 coroutinesVersion="1.8.1-Beta"
+powerMockVer="2.0.9"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -51,6 +52,10 @@ androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.r
 mockk-android={group="io.mockk",name="mockk-android",version.ref="mockk-version"}
 mockk-agent={group="io.mockk",name="mockk-agent",version.ref="mockk-version"}
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
+org-powermock={ module = "org.powermock:powermock-api-mockito2", version.ref = "powerMockVer" }
+org-powermock-module={ module = "org.powermock:powermock-module-junit4", version.ref = "powerMockVer" }
+
+
 [bundles]
 mockk=["mockk-agent","mockk-android"]
 

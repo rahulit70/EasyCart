@@ -17,7 +17,7 @@ class ProductListViewModelToUserEventTest {
         val productListViewModel = mockk<ProductListViewModel>(relaxed = true)
 
         // Stubbing the behavior of getProductsList method
-        coEvery { productListViewModel.getProductsList() } returns Job() // Returning a mock Job object
+        coEvery { productListViewModel.getProductsList() } returns Unit // Returning a mock Job object
 
         // Creating an instance of the converter
         val converter = ProductListViewModelToUserEvent()

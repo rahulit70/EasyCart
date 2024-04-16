@@ -1,10 +1,20 @@
 package com.rm.easycart.productlist.repository
 
+import com.rm.easycart.core.model.Product
+import com.rm.easycart.core.model.ProductsResponse
+import com.rm.easycart.core.network.ApiService
+import io.mockk.coEvery
+import io.mockk.mockk
+import junit.framework.TestCase.assertEquals
+import kotlinx.coroutines.test.runTest
+import org.junit.Before
+import org.junit.Test
+import retrofit2.Response
+
 
 class ProductListRepoImplTest {
-    // TODO: resolve issue with log method
 
-    /*private lateinit var apiService: ApiService
+    private lateinit var apiService: ApiService
     private lateinit var productListRepoImpl: ProductListRepoImpl
 
     @Before
@@ -14,19 +24,19 @@ class ProductListRepoImplTest {
     }
 
     @Test
-    fun `invoke returns Flow of PagingData of Products`() = runTest {
+    fun `invoke returns ProductResponse`() = runTest {
         val fakeProducts = listOf(
             Product(id = 1, title = "Product 1"),
             Product(id = 2, title = "Product 2")
         )
-        val fakePagingData = PagingData.from(fakeProducts)
+        val fakeResponse = Response.success(ProductsResponse(fakeProducts))
 
-        coEvery { apiService.getProducts(any(), any()) } returns Response.success(ProductsResponse(products = fakeProducts, skip = 0))
+        coEvery { apiService.getProducts(any(), any()) } returns fakeResponse
 
-        coEvery { productListRepoImpl.invoke().first() } returns fakePagingData
 
-        val result = productListRepoImpl.invoke().first()
 
-        assertEquals(fakePagingData, result)
-    }*/
+        val result = productListRepoImpl.invoke(0)
+
+        assertEquals(fakeProducts, result.body()?.products)
+    }
 }

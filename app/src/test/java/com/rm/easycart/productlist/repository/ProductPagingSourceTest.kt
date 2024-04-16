@@ -5,6 +5,8 @@ import androidx.paging.PagingState
 import com.rm.easycart.core.model.Product
 import com.rm.easycart.core.model.ProductsResponse
 import com.rm.easycart.core.network.ApiService
+import com.rm.easycart.productlist.usecase.GetProductListUseCase
+import com.rm.easycart.productlist.usecase.ProductPagingSource
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -19,13 +21,13 @@ import retrofit2.Response
 class ProductPagingSourceTest {
 
 
-    private lateinit var apiService: ApiService
+    private lateinit var getProductListUseCase: GetProductListUseCase
     private lateinit var pagingSource: ProductPagingSource
 
     @Before
     fun setup() {
-        apiService = mockk()
-        pagingSource = ProductPagingSource(apiService)
+        getProductListUseCase = mockk()
+        pagingSource = ProductPagingSource(getProductListUseCase)
     }
 
     @Test
@@ -35,7 +37,7 @@ class ProductPagingSourceTest {
             Product(id = 2, title = "Product 2")
         )
         val fakeResponse = Response.success(ProductsResponse(products = fakeProducts, skip = 0))
-        coEvery { apiService.getProducts(10, 0) } returns fakeResponse
+        coEvery { getProductListUseCase.invoke( 0) } returns fakeResponse
 
         val loadParams = PagingSource.LoadParams.Refresh<Int>(
             key = null,
@@ -54,7 +56,7 @@ class ProductPagingSourceTest {
 
     @Test
     fun `load returns LoadResult Error when exception occurs`() = runBlocking {
-        coEvery { apiService.getProducts(10, 0) } throws RuntimeException("Network Error")
+        coEvery { getProductListUseCase.invoke( 0) } throws RuntimeException("Network Error")
 
         val loadParams = PagingSource.LoadParams.Refresh<Int>(
             key = null,

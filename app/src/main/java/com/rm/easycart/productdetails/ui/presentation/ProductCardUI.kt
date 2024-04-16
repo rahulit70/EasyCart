@@ -35,15 +35,11 @@ fun ProductCardUI(
 ) {
     Card(
         modifier = Modifier
-            .padding(8.dp)
-            .clip(RoundedCornerShape(12.dp)),
-        shape = RoundedCornerShape(12.dp),
+            .padding(8.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onSecondary
         ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 9.dp
-        )
+
     ) {
 
         Column(Modifier.padding(5.dp)) {

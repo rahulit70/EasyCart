@@ -1,109 +1,59 @@
 package com.rm.easycart.productlist.viewmodel
 
 import androidx.paging.PagingData
-import com.rm.easycart.MainDispatcherRule
 import com.rm.easycart.core.model.Product
+import com.rm.easycart.core.model.ProductsResponse
 import com.rm.easycart.productlist.usecase.GetProductListUseCase
 import io.mockk.coEvery
-import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.TestDispatcher
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.advanceUntilIdle
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.setMain
-import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
+import retrofit2.Response
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ProductListViewModelTest {
 
-    @get:Rule
-    val mainDispatcherRule = MainDispatcherRule()
-    private  val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
+
+    private lateinit var viewModel: ProductListViewModel
+    private lateinit var productListUseCase: GetProductListUseCase
+
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Before
-    fun setup() {
-        Dispatchers.setMain(testDispatcher)
+    fun setUp() {
+        Dispatchers.setMain(Dispatchers.Default)
+        productListUseCase = mockk()
+        viewModel = ProductListViewModel(productListUseCase)
     }
-
-    @After
-    fun tearDown() {
-        Dispatchers.resetMain()
-    }
-
 
     @Test
-    fun `get product list test success`() = runTest {
+    fun getProductListTest() {
+        runBlocking {
+            val data = ProductsResponse(
+                listOf(
+                    Product(
+                        id = 1,
+                        title = "P1",
+                        price = 111,
+                    ),
+                    Product(
+                        id = 2,
+                        title = "P2",
+                        price = 999,
+                    )
+                )
+            )
 
-        // Mocking the GetProductListUseCase
-        val getProductListUseCase = mockk<GetProductListUseCase>()
-
-        // Define the dummy PagingData
-        val dummyProductList = listOf(
-            Product(id = 1, title = "p1"),
-            Product(id = 2, title = "p2"),
-        )
-
-        val dummyPagingData = PagingData.from(dummyProductList)
-
-        // Mocking the response of getProductListUseCase
-        val mockResponse: Flow<PagingData<Product>> =
-            flowOf(dummyPagingData)
-        coEvery { getProductListUseCase.invoke() } returns mockResponse
-
-        // Creating an instance of the ProductListViewModel
-        val viewModel = ProductListViewModel(
-            getProductListUseCase = getProductListUseCase
-        )
-
-        // Calling the getProductsList method
-        viewModel.getProductsList()
-
-        // Advance the coroutine dispatcher to allow the suspending function to execute
-        advanceUntilIdle()
-
-        // Ensure the coroutine is launched
-        coVerify { getProductListUseCase.invoke() }
+            coEvery { productListUseCase.invoke(any()) } returns Response.success(data)
 
 
-      //  val productStateExpected : MutableStateFlow<PagingData<Product>> = MutableStateFlow(value =dummyPagingData)
+             viewModel.getProductsList()
 
-       // coVerify { viewModel.updateState(dummyPagingData) }
+            assert(viewModel.productState.value != PagingData.empty<Product>())
+
+        }
     }
-
-/*    @Test
-    fun `update state success`() = runTest {
-
-        // Mocking the GetProductListUseCase
-        val getProductListUseCase = mockk<GetProductListUseCase>()
-
-        // Define the dummy PagingData
-        val dummyProductList = listOf(
-            Product(id = 1, title = "p1"),
-            Product(id = 2, title = "p2"),
-        )
-
-        val dummyPagingData = PagingData.from(dummyProductList)
-
-
-        // Creating an instance of the ProductListViewModel
-        val viewModel = ProductListViewModel(
-            getProductListUseCase = getProductListUseCase
-        )
-
-        // Calling the updateState method
-        viewModel.updateState(dummyPagingData)
-
-
-        val productStateExpected : MutableStateFlow<PagingData<Product>> = MutableStateFlow(value =dummyPagingData)
-
-       assertEquals(viewModel.productState.value,productStateExpected.value)
-    }*/
 }

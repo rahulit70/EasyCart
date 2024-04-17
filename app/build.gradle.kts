@@ -120,6 +120,5 @@ dependencies {
     testImplementation(libs.bundles.mockk)
     androidTestImplementation(libs.bundles.mockk)
     testImplementation (libs.kotlinx.coroutines.test)
-    testImplementation(libs.org.powermock)
-    testImplementation(libs.org.powermock.module)
+
 }
